@@ -30,11 +30,12 @@ Este projeto é uma base completa para criação de uma API em Node.js utilizand
 git clone https://github.com/pedrozzFree/baseApi.git
 cd baseApi
 npm install
-
+```
 Ou, se preferir:
 
+```bash
 yarn
-
+```
 
 ---
 
