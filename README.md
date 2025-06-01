@@ -32,23 +32,20 @@ cd baseApi
 npm install
 ```
 Ou, se preferir:
-
 ```bash
 yarn
-```
+````
 
 ---
 
-Execução
-
-Local
-
+Inicialização
+```bash
 node index.js
-
-Linux com script
-
+```
+Ou
+```bash
 bash start.sh
-
+```
 O servidor será iniciado na porta definida dentro do index.js (por padrão, porta 3000).
 
 
@@ -63,8 +60,9 @@ A API utiliza autenticação por chave (API Key). As chaves válidas estão arma
 database/apikeys.json
 
 Exemplo de requisição:
-
+```html
 /api/rota?parametro=valor&apikey=SUA_KEY
+```
 
 Estrutura de Rotas
 
@@ -78,22 +76,6 @@ As rotas são registradas dinamicamente. Para adicionar uma nova funcionalidade:
 
 3. Adicione a lógica dentro de routes/ ou controllers/ conforme a organização usada.
 
-
-
-
----
-
-Estrutura do Projeto
-
-base-api/
-├── database/           # Dados locais e verificação de API Keys
-│   ├── apikeys.json
-│   └── scraper.js
-├── public/             # Interface HTML opcional
-├── index.js            # Servidor principal e registro de rotas
-├── package.json        # Dependências do projeto
-├── start.sh            # Script opcional de inicialização
-└── node_modules/       # Dependências instaladas
 
 
 ---
