@@ -1,0 +1,18 @@
+{
+  "name": "base-api",
+  "version": "1.0.0",
+  "description": "um base api da dark stars feita por pedrozz Mods",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pedrozz Mods",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "express": "^5.1.0",
+    "node-fetch": "^2.7.0",
+    "request": "^2.88.2",
+    "path": "^0.12.7"
+  }
+}

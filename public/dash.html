@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon" />
+<title>Dark Stars Api - Base</title>
+
+<!-- ========== All CSS files linkup ========= -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="assets/css/lineicons.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="assets/css/fullcalendar.css" />
+<link rel="stylesheet" href="assets/css/fullcalendar.css" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<!-- ======== Preloader =========== --->
+    <div id="preloader">
+      <div class="spinner"></div>
+    </div>
+     <!--- ======== Preloader =========== -->
+
+<!-- ======== sidebar-nav start =========== -->
+<aside class="sidebar-nav-wrapper">
+<div class="navbar-logo">
+<center><img class="mx-auto" style="border-radius: 100%; width: 72px; height: 72px; " src="./assets/images/logo.png" alt="Logo"></center>
+</div>
+<nav class="sidebar-nav">
+<ul>
+
+ 
+<li class="nav-item">
+<a href="#">
+<span class="icon">
+<span class="material-icons">dashboard</span>
+</span>
+<span class="text">dashboard</span>
+</a>
+</li>
+<span class="divider"><hr /></span>
+<li class="nav-item nav-item-has-children">
+<a
+href="#0"
+class="collapsed"
+data-bs-toggle="collapse"
+data-bs-target="#ddmenu_2"
+aria-controls="ddmenu_2"
+aria-expanded="false"
+aria-label="Toggle navigation"
+>
+<span class="icon">
+<span class="material-icons">download</span>
+</span>
+<span class="text">Downloads</span>
+</a>
+<ul id="ddmenu_2" class="collapse dropdown-nav">
+<li><a href="/api/download/ytmp3?url=https://www.youtube.com/watch?v=0O7nK2XSjAs&apikey=pedrozzKey">Ytmp3</a>
+<li><a href="/api/download/ytmp4?url=https://www.youtube.com/watch?v=0O7nK2XSjAs&apikey=pedrozzKey">Ytmp4</a>
+<li><a href="/api/download/playAudio?query=melo de perdida&apikey=pedrozzKey">Play Audio</a>
+<li><a href="/api/download/PlayVideo?query=melo de perdida&apikey=pedrozzKey">Play Video</a>
+<li><a href="/api/download/audiomeme?nome=bolsonaro&apikey=pedrozzKey">Audiomeme</a></li>
+<li><a href="/api/download/tiktokDl?url=https://www.tiktok.com/@melissaseabra/video/7434923210119859511&apikey=pedrozzKey">TikTok Dl</a>
+<li><a href="/api/download/tiktokQuery?query=edit anime&apikey=pedrozzKey">TikTok Query</a>
+<li><a href="/api/download/apkpureDl?url=https://apkpure.com/gol-show/com.liga.goalshow&apikey=pedrozzKey">ApkPure Dl</a>
+<li><a href="/api/download/xvideosDl?url=https://www.xvideos.com/video.ohvbmvdfe4d/levei_novinha_para_minha_casa_e_fiz_ela_gozar_muito&apikey=pedrozzKey">Xvideos Dl</a>
+<li><a href="/api/download/instagramDl?url=https://www.instagram.com/reel/DAJ1fawB1Rs/?igsh=d2dsbno5ZXB6YnRw=&apikey=pedrozzKey">Instagram Dl</a>
+</li>
+</ul>
+</li>
+
+<li class="nav-item nav-item-has-children">
+<a
+href="#0"
+class="collapsed"
+data-bs-toggle="collapse"
+data-bs-target="#ddmenu_3"
+aria-controls="ddmenu_3"
+aria-expanded="false"
+aria-label="Toggle navigation"
+>
+<span class="icon">
+<span class="material-icons">search</span>
+</span>
+<span class="text">Pesquisa</span>
+</a>
+<ul id="ddmenu_3" class="collapse dropdown-nav">
+<li><a href="/api/pesquisa/youtube?query=pedrozz mods&apikey=pedrozzKey">YouTube</a>
+<li><a href="/api/pesquisa/wikipedia?query=javascript&apikey=pedrozzKey">Wikipedia</a>
+<li><a href="/api/pesquisa/xvideosQuery?query=novinha&apikey=pedrozzKey">Xvideos Query</a>
+<li><a href="/api/pesquisa/aptoide?query=pou&apikey=pedrozzKey">Aptoide</a>
+<li><a href="/api/pesquisa/apkpureQuery?query=pou&apikey=pedrozzKey">Apkpure Query</a>
+<li><a href="/api/pesquisa/pinterest?query=gato&apikey=pedrozzKey">Pinterest</a>
+<li><a href="/api/pesquisa/wallpaper?query=anime&apikey=pedrozzKey">Wallpaper</a>
+<li><a href="/api/pesquisa/playstore?query=pou&apikey=pedrozzKey">Playstore</a>
+</ul>
+</li>
+
+<li class="nav-item nav-item-has-children">
+<a
+href="#0"
+class="collapsed"
+data-bs-toggle="collapse"
+data-bs-target="#ddmenu_4"
+aria-controls="ddmenu_4"
+aria-expanded="false"
+aria-label="Toggle navigation"
+>
+<span class="icon">
+<span class="material-icons">android</span>
+</span>
+<span class="text">Inteligências</span>
+</a>
+<ul id="ddmenu_4" class="collapse dropdown-nav">
+<li><a href="/api/ai/gemini?texto=qual seu nome e modelo&apikey=pedrozzKey">Gemini</a>
+<li><a href="/api/ai/model/llma?texto=qual seu nome e modelo&apikey=pedrozzKey">Llma</a>
+<li><a href="/api/ai/model/llama2?texto=qual seu nome e modelo&apikey=pedrozzKey">Llama2</a>
+<li><a href="/api/ai/model/mistral?texto=qual seu nome e modelo&apikey=pedrozzKey">Mistral</a>
+<li><a href="/api/ai/model/sqlcode?texto=qual seu nome e modelo&apikey=pedrozzKey">Sqlcode</a>
+<li><a href="/api/ai/model/deepseek?texto=qual seu nome e modelo&apikey=pedrozzKey">Deepseek</a>
+<li><a href="/api/ai/model/deepseek-code?texto=qual seu nome e modelo&apikey=pedrozzKey">Deepseek Code</a>
+</ul>
+</li>
+
+<li class="nav-item nav-item-has-children">
+<a
+href="#0"
+class="collapsed"
+data-bs-toggle="collapse"
+data-bs-target="#ddmenu_5"
+aria-controls="ddmenu_5"
+aria-expanded="false"
+aria-label="Toggle navigation"
+>
+<span class="icon">
+<span class="material-icons">image</span>
+</span>
+<span class="text">Canvas</span>
+</a>
+<ul id="ddmenu_5" class="collapse dropdown-nav">
+<!---- DEU PREGUIÇA KKKK ADD AI É BEM FACIN, TEM UM MINI TUTORIAL LÁ NA INDEX KKKK ---->
+<li><a href="/api/canva/NOME&apikey=pedrozzKey">NOME</a>
+</ul>
+</li>
+
+<li class="nav-item nav-item-has-children">
+<a
+href="#0"
+class="collapsed"
+data-bs-toggle="collapse"
+data-bs-target="#ddmenu_6"
+aria-controls="ddmenu_6"
+aria-expanded="false"
+aria-label="Toggle navigation"
+>
+<span class="icon">
+<span class="material-icons">image</span>
+</span>
+<span class="text">Logos</span>
+</a>
+<ul id="ddmenu_6" class="collapse dropdown-nav">
+<li><a href="/api/logos/logo?nome=Pedrozz Mods&apikey=pedrozzKey">Logo 1</a>
+<li><a href="/api/logos/logo2?nome=Pedrozz Mods&apikey=pedrozzKey">Logo 2</a>
+<li><a href="/api/logos/logo3?nome=Pedrozz Mods&apikey=pedrozzKey">Logo 3</a>
+<li><a href="/api/logos/logo4?nome=Pedrozz Mods&apikey=pedrozzKey">Logo 4</a>
+<li><a href="/api/logos/logo5?nome=Pedrozz Mods&apikey=pedrozzKey">Logo 5</a>
+<li><a href="/api/images/metadinha&apikey=pedrozzKey">Metadinha</a>
+<li><a href="/api/images/metadinha2&apikey=pedrozzKey">Metadinha 2</a>
+<li><a href="/api/images/travazap&apikey=pedrozzKey">Trava Zap</a>
+<li><a href="/api/images/travazap2&apikey=pedrozzKey">Trava Zap 2</a>
+</ul>
+</li>
+
+<span class="divider"><hr /></span>
+
+<li class="nav-item">
+<a href="/atualizacao">
+<span class="icon">
+<span class="material-icons">notifications</span>
+</span>
+<span class="text">Atualizações</span>
+</a>
+</li>
+
+<li class="nav-item">
+<a href="https://wa.me/556199317165/?text=Olá gostaria de suporte na base api">
+<span class="icon">
+<span class="material-icons">message</span>
+</span>
+<span class="text">Suporte</span>
+</a>
+</li>
+
+<li class="nav-item">
+<a href="https://www.youtube.com/@Pedrozz_Mods">
+<span class="icon">
+<span class="material-icons">video_library</span>
+</span>
+<span class="text">YouTube</span>
+</a>
+</li>
+
+
+</ul>
+</nav>
+<div class="promo-box">
+<div class="promo-icon">
+<img class="mx-auto" style="border-radius: 100%; width: 72px; height: 72px; " src="./assets/images/logo.png" alt="Logo">
+</div>
+<h3>Comprar Plano</h3>
+<p>Adquira seu plano por um belo custo 👌</p>
+<a href="/planos" target="_blank" rel="nofollow" class="main-btn primary-btn btn-hover">
+Planos
+</a>
+</div>
+<br><br>
+</aside>
+<div class="overlay"></div>
+<!-- ======== sidebar-nav end =========== -->
+
+<!-- ======== main-wrapper start =========== -->
+<main class="main-wrapper">
+<!-- ========== header start ========== -->
+<header class="header">
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-5 col-md-5 col-6">
+<div class="header-left d-flex align-items-center">
+<div class="menu-toggle-btn mr-15">
+<button id="menu-toggle" class="main-btn primary-btn btn-hover">
+<i class="lni lni-chevron-left me-2"></i> Menu
+</button>
+</div>
+<div class="header-search d-none d-md-flex">
+<form action="#">
+<input type="text" placeholder="Search..." />
+<button><i class="lni lni-search-alt"></i></button>
+</form>
+</div>
+</div>
+</div>
+<div class="col-lg-7 col-md-7 col-6">
+<div class="header-right">
+
+ 
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- ========== header end ========== -->
+
+<!-- ========== section start ========== -->
+<section class="section">
+<div class="container-fluid">
+<!-- ========== title-wrapper start ========== -->
+<div class="title-wrapper pt-30">
+<div class="row align-items-center">
+<div class="col-md-6">
+<div class="title">
+<h2>Dashboard Api</h2>
+</div>
+</div>
+<!-- end col -->
+<div class="col-md-6">
+<div class="breadcrumb-wrapper">
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item">
+<a href="/">Home</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+Dashboard
+</li>
+</ol>
+</nav>
+</div>
+</div>
+<!-- end col -->
+</div>
+<!-- end row -->
+</div>
+<!-- ========== title-wrapper end ========== -->
+<div class="row">
+<div class="col-xl-3 col-lg-4 col-sm-6">
+<div class="icon-card mb-30">
+<div class="icon primary">
+<i class="lni lni-dashboard"></i>
+</div>
+<div class="content">
+<h6 class="mb-10">API Name</h6>
+<h3 class="text-bold mb-10">Dark Stars Api</h3>
+</div>
+</div>
+<!-- End Icon Cart -->
+<div class="col-xl-3 col-lg-4 col-sm-6">
+<div class="icon-card mb-30">
+<div class="icon purple">
+<span class="material-icons">code</span>
+</div>
+<div class="content">
+<h6 class="mb-10">Criador</h6>
+<h3 class="text-bold mb-10">Pedrozz Mods</h3>
+ 
+</div>
+</div>
+<!-- End Icon Cart -->
+<div class="col-xl-3 col-lg-4 col-sm-6">
+<div class="icon-card mb-30">
+<div class="icon white">
+<i class="lni lni-list"></i>
+</div>
+<div class="content">
+<h6 class="mb-10">Apis</h6>
+<h3 class="text-bold mb-10">Rotas</h3>
+<p class="text-sm text-success">
+<i class="lni lni-arrow-up"></i> 32
+<span class="text-gray"> rotas online</span>
+</p>
+</div>
+</div>
+<!-- End Icon Cart -->
+</div>
+<!-- End Col -->
+<div class="col-xl-3 col-lg-4 col-sm-6">
+<div class="icon-card mb-30">
+<div class="icon orange">
+<i class="lni lni-user"></i>
+</div>
+<div class="content">
+<h6 class="mb-10">Usuários</h6>
+<h3 class="text-bold mb-10">1000+</h3>
+<p class="text-sm text-success">
+<i class="lni lni-arrow-up"></i> +1%
+<span class="text-gray"> Por hora</span>
+</p>
+</div>
+</div>
+<!-- End Icon Cart -->
+<div class="row">
+<div class="col-lg-6">
+<!-- input style start -->
+<div class="card-style mb-30">
+<h6 class="mb-25">Verificar Key</h6>
+<div class="input-style-2">
+<label>Verificação</label>
+<input type="text" id="key" name="key" placeholder="Sua apikey" required>
+ <span class="icon"> <i class="lni lni-key"></i> </span>
+</div>
+<center><button onclick="verificar()" class="main-btn light-btn rounded-full btn-hover">Verificar</button></center>
+<div id="resultado" style="margin-top: 15px; text-align: center;"></div><br>
+</div>
+<!-- end card -->
+
+ 
+</div>
+<!-- end container -->
+</section>
+<!-- ========== section end ========== -->
+
+<!-- ========== footer start =========== -->
+<footer class="footer">
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-6 order-last order-md-first">
+<div class="copyright text-center text-md-start">
+<p class="text-sm">
+ Base feita por
+<a href="https://www.youtube.com/@Pedrozz_Mods" rel="nofollow" target="_blank">
+Pedrozz Mods
+</a>
+</p>
+</div>
+</div>
+<!-- end col-->
+<div class="col-md-6">
+<div class="terms d-flex justify-content-center justify-content-md-end">
+<a href="#0" class="text-sm ml-15">Dark Stars Api Todos os direitos reservados</a>
+</div>
+</div>
+</div>
+<!-- end row -->
+</div>
+<!-- end container -->
+</footer>
+<!-- ========== footer end =========== -->
+</main>
+
+<!-- ========= Javascript ======== -->
+<!----- Script de verificação de key ---->
+<script>
+//função do alert
+async function alert(texto, icon) {
+await Swal.fire({
+title: texto,
+icon: icon,
+showCancelButton: true,
+cancelButtonText: 'Fechar',
+reverseButtons: true,
+});
+}
+
+//função para verificar se a apikey existe ou não no banco de dados
+async function verificar() {
+const apikey = document.getElementById('key').value;
+const resultadoDiv = document.getElementById('resultado');
+
+//pergunta sobre a apikey para o usuário
+if (!apikey) {
+alert("Digite uma apikey válida", "error")
+return;
+}
+//manda a apikey para a api verificar se existe ou não
+fetch(`/api/apikey/verificar?apikey=${apikey}`)
+.then(response => response.json())
+.then(data => {
+if (data.error) {
+//manda um alert se der algum erro
+alert(data.error, "error")
+} else {
+//se existe ele manda uma notificação usando o alert
+alert(`Request restante: ${data.request}`, "success")
+}
+})
+//caso der erro na solicitação da api
+.catch(error => {
+alert("Error ao conectar a api", "error")
+//mostra o erro no console do navegador
+console.error(error);
+});
+}
+</script>
+<!--- outros scripts --->
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/Chart.min.js"></script>
+<script src="assets/js/dynamic-pie-chart.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/fullcalendar.js"></script>
+<script src="assets/js/jvectormap.min.js"></script>
+<script src="assets/js/world-merc.js"></script>
+<script src="assets/js/polyfill.js"></script>
+<script src="assets/js/main.js"></script>
+
+
+</body>
+</html>
