@@ -24,7 +24,7 @@ const criador = 'Pedrozz Mods 🦉';
 const senhaAdm = 'suaSenhaAdminSegura';
 
 //======SCRAPERS========\\
-const { ytsearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi } = require('./database/scraper.js')
+const { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi } = require('./database/scraper.js')
 
 //======================\\
 const app = express();
@@ -306,12 +306,12 @@ const infoErro = diminuirRequest(apikey);
 if (infoErro) return res.json(infoErro);
 if (!nome) return res.json({status: false, criador, error: "Falta o parâmetro nome na query"})
 try {
-const ScraperData = await NOME(nome);
+const ScraperData = await ytVideosSearch(nome);
 res.send(ScraperData)
 
 } catch (e) {
 console.log(e)
-res.json({status: false, criador, error: "Deu erro na sua solicitação, fale com o criador para suporte"})
+res.send({status: false, criador, error: "Deu erro na sua solicitação, fale com o criador para suporte"})
 }
 });
 

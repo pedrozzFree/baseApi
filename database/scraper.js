@@ -182,20 +182,26 @@ console.log(e)
 }
 }
 //========[ PESQUISA ]========//
-
-async function ytsearch(query) {
-try {
-api = await fetch(`${BaseApiDark}/api/pesquisa/youtube?query=${encodeURIComponent(query)}&apikey=${DARK_APIKEY}`)
-data = await api.json()
-return {
+const yts = require("yt-search")
+async function ytVideosSearch(query) {
+    return new Promise((resolve, reject) => {
+        try {
+            const cari = yts(query)
+            .then((data) => {
+                res = data.videos
+               
+                return {
 status: "online",
 criador,
-resultado: data.resultado
+resultado: res
 };
-} catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
-console.log(e)
-}
+            })
+            resolve(cari)
+        } catch (error) {
+            reject(error)
+        }
+        console.log(error)
+    })
 }
 
 async function wikipedia(query) {
@@ -527,4 +533,4 @@ console.log(e)
 
 }
 //EXPORTANDO AS FUNÇÕES 
-module.exports = { ytsearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi }
+module.exports = { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi }
