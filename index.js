@@ -21,10 +21,10 @@ const request = require('request');
 //======CONFIG======\\
 const KEY_FILE = './database/apikeys.json';
 const criador = 'Pedrozz Mods 🦉';
-const senhaAdm = 'suaSenhaAdminSegura';
+const senhaAdm = 'pedrozz';
 
 //======SCRAPERS========\\
-const { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi } = require('./database/scraper.js')
+const { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi, consultas } = require('./database/scraper.js')
 
 //======================\\
 const app = express();
@@ -32,6 +32,8 @@ const PORT = 3000;
 
 //=====MIDDLEWARES======\\\
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //========FUNÇÕES=========\\
 const cores = {
@@ -534,6 +536,21 @@ res.json({status: false, criador, error: "Deu erro na sua solicitação, fale co
 }
 });
 
+//CONSULTAS
+app.get('/api/consulta/:pux', async (req, res) => {
+const { pux } = req.params;
+const { apikey, dados } = req.query;
+const infoErro = diminuirRequest(apikey);
+if (infoErro) return res.json(infoErro);
+try {
+const ScraperData = await consultas(pux, dados);
+res.send(ScraperData)
+} catch (e) {
+console.log(e)
+res.json({status: false, criador, error: "Deu erro na sua solicitação, fale com o criador para suporte"})
+}
+});
+
 //Imagens diversas
 app.get('/api/images/metadinha', async (req, res) => {
 const apikey = req.query.apikey;
@@ -615,6 +632,9 @@ app.get('/atualizacao', async (req, res) => {
 res.sendFile(path.join(__dirname, 'public', 'atualizacao.html'));
 });
 
+app.get('/painel', async (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'adm.html'));
+});
 //=====FIM ROTAS======\\
 
 //Inicialização do servidor

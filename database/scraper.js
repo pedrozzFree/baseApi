@@ -17,7 +17,7 @@ const fetch = require("node-fetch");
 //CONSTS
 const BaseApi = "http://speedhosting.cloud:5000";
 const BaseApiDark = "http://speedhosting.cloud:2025";
-const DARK_APIKEY = "SUA KEY DARK";
+const DARK_APIKEY = "pedrozz1";
 const ApiKey = "SUA KEY SPEED";
 const criador = "Pedrozz Mods 🦉";
 
@@ -532,5 +532,21 @@ console.log(e)
 }
 
 }
+
+async function consultas(pux, dado) {
+try {
+api2 = await fetch(`${BaseApiDark}/api/consulta/${pux}?query=${dado}&apikey=${DARK_APIKEY}`)
+api = await api2.json()
+return {
+status: "online",
+criador,
+resposta: api.resultado
+};
+} catch (e) {
+console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log(e)
+}
+
+}
 //EXPORTANDO AS FUNÇÕES 
-module.exports = { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi }
+module.exports = { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi, consultas }
