@@ -24,7 +24,7 @@ const criador = 'Pedrozz Mods 🦉';
 const senhaAdm = 'pedrozz';
 
 //======SCRAPERS========\\
-const { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi, consultas } = require('./database/scraper.js')
+const { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, figurinhas, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, dalle, imagineAi, multiAi, consultas } = require('./database/scraper.js')
 
 //======================\\
 const app = express();
@@ -466,13 +466,38 @@ app.get('/api/ai/model/:modelo', async (req, res) => {
 const { modelo } = req.params;
 const apikey = req.query.apikey;
 const nome = req.query.texto;
+const prompt2 = req.query.prompt2
 const infoErro = diminuirRequest(apikey);
 if (infoErro) return res.json(infoErro);
 if (!nome) return res.json({status: false, criador, error: "Falta o parâmetro nome na query"})
 if (!modelo) return res.json({status: false, criador, error: "Falta o parâmetro nome do modelo"})
 try {
-const ScraperData = await multiAi(modelo, nome, prompt2 = null);
+const ScraperData = await multiAi(modelo, nome, `${prompt2 || "nada"}`);
 res.send(ScraperData)
+} catch (e) {
+console.log(e)
+res.json({status: false, criador, error: "Deu erro na sua solicitação, fale com o criador para suporte"})
+}
+});
+
+app.get('/api/ai/imagem/model/:modelo', async (req, res) => {
+const { modelo } = req.params;
+const apikey = req.query.apikey;
+const nome = req.query.texto;
+const infoErro = diminuirRequest(apikey);
+if (infoErro) return res.json(infoErro);
+if (!nome) return res.json({status: false, criador, error: "Falta o parâmetro nome na query"})
+if (!modelo) return res.json({status: false, criador, error: "Falta o parâmetro nome do modelo"})
+try {
+if (modelo === "imagine") {
+const ScraperData = await imagineAi(nome);
+res.send(ScraperData)
+} else {
+const ScraperData = await dalle(nome, modelo);
+const response = await axios.get(ScraperData, { responseType: "arraybuffer" });
+res.setHeader("Content-Type", response.headers["content-type"]);
+res.send(response.data);
+}
 } catch (e) {
 console.log(e)
 res.json({status: false, criador, error: "Deu erro na sua solicitação, fale com o criador para suporte"})
@@ -481,7 +506,7 @@ res.json({status: false, criador, error: "Deu erro na sua solicitação, fale co
 
 //canvas
 /*
-MINI TUTORIAL DE COMO ADD UM NOVO CANVA NA DASH
+MINI TUTORIAL DE COMO ADD UM CANVA NA DASH
 
 Lá no dash.html tem um trecho assim:
 
@@ -606,6 +631,18 @@ res.send(ScraperData)
 console.log(e)
 res.json({status: false, criador, error: "Deu erro na sua solicitação, fale com o criador para suporte"})
 }
+});
+//Figurinhas
+app.get('/api/figurinhas/:fig', async (req, res) => {
+const { fig } = req.params
+const apikey = req.query.apikey;
+const infoErro = diminuirRequest(apikey);
+if (infoErro) return res.json(infoErro);
+const ScraperData = await figurinhas(fig)
+console.log(ScraperData)
+const response = await axios.get(ScraperData, { responseType: "arraybuffer" });
+res.setHeader("Content-Type", response.headers["content-type"]);
+res.send(response.data);
 });
 //outros
 app.get('/api/outros/ROTA', async (req, res) => {

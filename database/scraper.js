@@ -17,7 +17,7 @@ const fetch = require("node-fetch");
 //CONSTS
 const BaseApi = "http://speedhosting.cloud:5000";
 const BaseApiDark = "http://speedhosting.cloud:2025";
-const DARK_APIKEY = "pedrozz1";
+const DARK_APIKEY = "SUAKEY"; //PEGA FAZENDO LOGIN NO LINK ACIMA DESSA CONST
 const ApiKey = "SUA KEY SPEED";
 const criador = "Pedrozz Mods 🦉";
 
@@ -499,7 +499,14 @@ console.log(e)
 }
 }
 
-
+//FIGURINHAS
+async function figurinhas(nome) {
+try {
+return `${BaseApiDark}/sticker/${nome}?apikey=${DARK_APIKEY}`;
+} catch (e) {
+console.log(e)
+}
+}
 //========[ INTELIGÊNCIA ARTIFICIAL ]========//
 
 async function gemini(query) {
@@ -519,6 +526,23 @@ console.log(e)
 
 async function multiAi(modelo, prompt, prompt2 = null) {
 try {
+if (modelo === "gpt") {
+api2 = await fetch(`${BaseApiDark}/api/gpt?texto=${prompt}&apikey=${DARK_APIKEY}`)
+api = await api2.json();
+return {
+status: "online",
+criador,
+resposta: api.resultado
+};
+} else if (modelo === "gptPrompt") {
+api2 = await fetch(`${BaseApiDark}/api/gptPrompt?texto=${prompt}&prompt=${prompt2}&apikey=${DARK_APIKEY}`)
+api = await api2.json();
+return {
+status: "online",
+criador,
+resposta: api.resposta
+};
+} else {
 api2 = await fetch(`${BaseApiDark}/api/ai/texto/${modelo}?query=${prompt}&apikey=${DARK_APIKEY}`)
 api = await api2.json()
 return {
@@ -526,13 +550,36 @@ status: "online",
 criador,
 resposta: api.resultado
 };
+}
 } catch (e) {
 console.log("Deu erro na solicitação, modulo: Scraper.js")
 console.log(e)
 }
-
 }
 
+async function imagineAi(prompt) {
+try {
+api2 = await fetch(`${BaseApiDark}/api/ai/imagem/imagine?prompt=${prompt}&apikey=${DARK_APIKEY}`)
+api = await api2.json();
+return {
+status: true,
+criador,
+imagem: api.resultado.imagemUrl,
+info: api.resultado.info
+}
+} catch (e) {
+console.log(e)
+}
+}
+
+async function dalle(prompt, modelo) {
+try {
+return `${BaseApiDark}/api/ai/imagem/${modelo}?prompt=${prompt}&apikey=${DARK_APIKEY}`
+} catch (e) {
+console.log(e)
+}
+
+}
 async function consultas(pux, dado) {
 try {
 api2 = await fetch(`${BaseApiDark}/api/consulta/${pux}?query=${dado}&apikey=${DARK_APIKEY}`)
@@ -549,4 +596,4 @@ console.log(e)
 
 }
 //EXPORTANDO AS FUNÇÕES 
-module.exports = { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, multiAi, consultas }
+module.exports = { ytVideosSearch, ytMp3Query, ytMp4Query, ytMp3, ytMp4, instagramDl, tiktokDl, xvideosDl, apkpureDl, audiomeme, wikipedia, amazon, tiktokQuery, apkpureQuery, xvideosQuery, aptoide, Pinterest, figurinhas, PinterestMultiMidia, wallpaper, Playstore, CanvabemVindo, canvaLevel, canvaMusicCard, canvaMusicCard2, canvaMontagem, Hentaizinho, Hentaizinho2, travaZapImg, travaZapImg2, metadinha, metadinha2, logo, gemini, dalle, imagineAi, multiAi, consultas }
