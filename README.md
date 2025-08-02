@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Ativo-red?style=flat-square" alt="Status do Projeto">
-  <img src="https://img.shields.io/badge/Version-1.0.0-black?style=flat-square" alt="Versão">
+  <img src="https://img.shields.io/badge/Version-2.4.1-black?style=flat-square" alt="Versão">
   <img src="https://img.shields.io/badge/Node.js-%3E=18.0.0-red?style=flat-square" alt="Node Version">
 </p>
 
@@ -50,7 +50,7 @@ sh start.sh
 ```
 
 > Por padrão, o servidor será iniciado em http://localhost:3000
-
+> Lembre se de colocar sua apikey no arquivo scraper.js (apikey da api principal)
 ---
 
 🔥 Exemplos de Rotas

@@ -1,6 +1,6 @@
 {
   "name": "base-api",
-  "version": "1.0.0",
+  "version": "2.4.1",
   "description": "um base api da dark stars feita por pedrozz Mods",
   "main": "index.js",
   "scripts": {
