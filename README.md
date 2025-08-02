@@ -1,106 +1,81 @@
----
+<h1 align="center" style="color:red;">
+🔥 baseApi - API REST 🔥
+</h1>
 
-# Pedrozz API - Base Node.js com Autenticação por API Key
-
-Este projeto é uma base completa para criação de uma API em Node.js utilizando Express. Inclui sistema de autenticação via API Key, suporte a múltiplas rotas e integração com ferramentas externas como scrapers e geradores dinâmicos.
-
----
-
-## Funcionalidades
-
-- Estrutura modular com rotas dinâmicas
-- Sistema de verificação de API Keys
-- Suporte a geração de conteúdo dinâmico (ex: imagens, textos, dados externos)
-- Integração com scrapers personalizados
-- Interface web opcional via `public/dash.html`
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Ativo-red?style=flat-square" alt="Status do Projeto">
+  <img src="https://img.shields.io/badge/Version-1.0.0-black?style=flat-square" alt="Versão">
+  <img src="https://img.shields.io/badge/Node.js-%3E=18.0.0-red?style=flat-square" alt="Node Version">
+</p>
 
 ---
 
-## Requisitos
+## 🧠 Sobre o Projeto
 
-- Node.js 16 ou superior
-- npm ou yarn
-- (opcional) Ambiente Linux com Bash para uso do `start.sh`
+Este projeto é uma **base de API REST** criada com Node.js e Express para facilitar o desenvolvimento de aplicações que utilizam rotas públicas, privadas e integração com arquivos JSON locais.
+
+> 💡 Ideal para bots, dashboards, sistemas de gerenciamento ou qualquer aplicação que precise de uma API leve e extensível.
 
 ---
 
-## Instalação
+## ⚙️ Tecnologias Utilizadas
 
+- 🔧 **Node.js**
+- 🚀 **Express**
+- 📁 **JSON como banco de dados**
+- 🛠️ Middleware customizado
+
+---
+
+## 🧪 Como Usar
+
+# Clone o repositório
 ```bash
-git clone https://github.com/pedrozzFree/baseApi.git
+git clone https://github.com/Pedrozz13755/baseApi.git
+```
+
+# Acesse a pasta do projeto
+```bash
 cd baseApi
+```
+
+# Instale as dependências (Não nescessário)
+```bash
 npm install
 ```
-Ou, se preferir:
+
+# Inicie o servidor
 ```bash
-yarn
-````
-
----
-
-Inicialização
-```bash
-node index.js
-```
-Ou
-```bash
-bash start.sh
-```
-O servidor será iniciado na porta definida dentro do index.js (por padrão, porta 3000).
-
-
----
-
-Uso da API
-
-Autenticação
-
-A API utiliza autenticação por chave (API Key). As chaves válidas estão armazenadas no arquivo:
-
-database/apikeys.json
-
-Exemplo de requisição:
-```html
-/api/rota?parametro=valor&apikey=SUA_KEY
+sh start.sh
 ```
 
-Estrutura de Rotas
+> Por padrão, o servidor será iniciado em http://localhost:3000
 
-As rotas são registradas dinamicamente. Para adicionar uma nova funcionalidade:
+---
 
-1. Crie o módulo correspondente.
+🔥 Exemplos de Rotas
 
+```bash
+Método	Rota	Descrição
 
-2. Registre a rota no index.js (ou no sistema automático, se já integrado).
+GET	/	Página inicial da API
+GET	/dashboard	documentação da api
+GET	/painel	Peinel Administrativo 
+GET	/planos Planos da api
+```
 
+---
 
-3. Adicione a lógica dentro de routes/ ou controllers/ conforme a organização usada.
+❤️ Créditos
 
+Desenvolvido por Pedrozz
+💎 YouTube: pedrozz_Mods
 
 
 ---
 
-Segurança
+📜 Licença
 
-O sistema de autenticação é básico e deve ser melhorado para produção (ex: tokens JWT, banco de dados seguro).
-
-As requisições são tratadas via express, mas middleware de segurança como CORS, Helmet e validação de entrada ainda podem ser adicionados conforme a necessidade.
-
-
-
----
-
-Licença e Créditos
-
-Este projeto foi desenvolvido por Pedrozz Mods e disponibilizado gratuitamente para a comunidade.
-
-O uso comercial é permitido, mas manter os créditos é uma forma justa de reconhecimento.
-
-
----
-
-Considerações finais
-
-Essa base serve como ponto de partida para criar sua própria API modular e segura. Personalize, expanda e adapte conforme sua necessidade.
+Este projeto está sob a licença MIT.
 
 ---
