@@ -1,182 +1,515 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon" />
-    <title>Dark Stars Api - Base</title>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dark Stars API - Painel Admin</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+:root {
+/* Cores do Tema Vermelho/Preto */
+--primary-color: #d90429;
+--secondary-color: #ef233c;
+--accent-color: #ff4d6d;
+--dark-color: #0f0f0f;
+--darker-color: #080808;
+--light-color: #f8f9fa;
+--text-color: #edf2f4;
+--text-muted: #8d99ae;
+--card-bg: #1a1a1a;
+--input-bg: #2b2b2b;
+--border-color: #333333;
 
-    <!-- ========== All CSS files linkup ========= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/lineicons.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
-    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  </head>
-  <body>
-    <!-- ======== Preloader =========== 
-    <div id="preloader">
-      <div class="spinner"></div>
-    </div>
-     ======== Preloader =========== -->
+/* Efeitos */
+--transition: all 0.3s ease;
+--shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
 
-    <!-- ======== main-wrapper start =========== -->
-    <main class="main-wrapper">
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
+}
 
-      <!-- ========== section start ========== -->
-<section class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-4">Painel Administrativo</h2>
-    <p class="text-center text-muted mb-5">Gerencie as API Keys do sistema</p>
+body {
+background-color: var(--dark-color);
+color: var(--text-color);
+line-height: 1.6;
+min-height: 100vh;
+}
 
-    <!-- Adicionar API Key -->
-    <div class="card mb-4">
-      <div class="card-header bg-primary text-white">Adicionar API Key</div>
-      <div class="card-body">
-        <div class="form-group mb-2">
-          <label>Senha do Administrador</label>
-          <input type="password" class="form-control" id="senhaAdd" placeholder="Senha">
-        </div>
-        <div class="form-group mb-2">
-          <label>Nova API Key</label>
-          <input type="text" class="form-control" id="newKey" placeholder="ex: darkstars2025">
-        </div>
-        <div class="form-group mb-3">
-          <label>Requests Permitidos</label>
-          <input type="number" class="form-control" id="newRequest" placeholder="ex: 100">
-        </div>
-        <button onclick="adicionarKey()" class="btn btn-primary">Adicionar Key</button>
-      </div>
-    </div>
+/* Layout Principal */
+.main-wrapper {
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+}
 
-    <!-- Remover API Key -->
-    <div class="card mb-4">
-      <div class="card-header bg-danger text-white">Remover API Key</div>
-      <div class="card-body">
-        <div class="form-group mb-2">
-          <label>Senha do Administrador</label>
-          <input type="password" class="form-control" id="senhaDel" placeholder="Senha">
-        </div>
-        <div class="form-group mb-3">
-          <label>API Key para remover</label>
-          <input type="text" class="form-control" id="delKey" placeholder="ex: darkstars2025">
-        </div>
-        <button onclick="removerKey()" class="btn btn-danger">Remover Key</button>
-      </div>
-    </div>
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+flex: 1;
+}
 
-    <!-- Atualizar Request -->
-    <div class="card">
-      <div class="card-header bg-dark text-white">Atualizar Limite de Requisições</div>
-      <div class="card-body">
-        <div class="form-group mb-2">
-          <label>Senha do Administrador</label>
-          <input type="password" class="form-control" id="senhaRequest" placeholder="Senha">
-        </div>
-        <div class="form-group mb-2">
-          <label>API Key</label>
-          <input type="text" class="form-control" id="reqKey" placeholder="ex: darkstars2025">
-        </div>
-        <div class="form-group mb-3">
-          <label>Novo Limite</label>
-          <input type="number" class="form-control" id="reqNew" placeholder="ex: 5000">
-        </div>
-        <button onclick="atualizarRequest()" class="btn btn-dark">Atualizar Request</button>
-      </div>
-    </div>
-  </div>
+/* Cabeçalho */
+.page-header {
+text-align: center;
+margin-bottom: 40px;
+padding-top: 40px;
+position: relative;
+}
+
+.page-header h2 {
+font-size: 2.5rem;
+font-weight: 700;
+background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+display: inline-block;
+margin-bottom: 15px;
+}
+
+.page-header p {
+color: var(--text-muted);
+font-size: 1.1rem;
+max-width: 600px;
+margin: 0 auto;
+}
+
+/* Cards */
+.card {
+background-color: var(--card-bg);
+border-radius: 12px;
+box-shadow: var(--shadow);
+margin-bottom: 30px;
+border: 1px solid var(--border-color);
+transition: var(--transition);
+overflow: hidden;
+}
+
+.card:hover {
+transform: translateY(-5px);
+box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+padding: 18px 25px;
+background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+color: white;
+font-weight: 600;
+letter-spacing: 0.5px;
+position: relative;
+}
+
+.card-header::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 2px;
+background: rgba(255, 255, 255, 0.1);
+}
+
+.card-body {
+padding: 25px;
+}
+
+/* Formulários */
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 8px;
+font-weight: 500;
+color: var(--text-color);
+}
+
+.form-control {
+width: 100%;
+padding: 14px 16px;
+background-color: var(--input-bg);
+border: 1px solid var(--border-color);
+border-radius: 8px;
+color: var(--text-color);
+font-size: 1rem;
+transition: var(--transition);
+}
+
+.form-control:focus {
+outline: none;
+border-color: var(--accent-color);
+box-shadow: 0 0 0 3px rgba(239, 35, 60, 0.2);
+}
+
+/* Botões */
+.btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 14px 24px;
+border-radius: 8px;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+transition: var(--transition);
+border: none;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+}
+
+.btn i {
+margin-right: 8px;
+}
+
+.btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+transition: 0.5s;
+}
+
+.btn:hover::before {
+left: 100%;
+}
+
+.btn-primary {
+background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+color: white;
+}
+
+.btn-primary:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 20px rgba(239, 35, 60, 0.3);
+}
+
+.btn-danger {
+background: linear-gradient(135deg, #c1121f, #e63946);
+color: white;
+}
+
+.btn-danger:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 20px rgba(193, 18, 31, 0.3);
+}
+
+.btn-dark {
+background: linear-gradient(135deg, #2b2d42, #1a1a1a);
+color: white;
+}
+
+.btn-dark:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 20px rgba(43, 45, 66, 0.3);
+}
+
+/* Rodapé */
+.footer {
+background-color: var(--darker-color);
+padding: 30px 0;
+margin-top: 60px;
+border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-content {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+
+.footer p {
+color: var(--text-muted);
+font-size: 0.9rem;
+margin-bottom: 10px;
+}
+
+.footer a {
+color: var(--accent-color);
+text-decoration: none;
+transition: var(--transition);
+}
+
+.footer a:hover {
+color: var(--secondary-color);
+text-decoration: underline;
+}
+
+/* Animações */
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+animation: fadeIn 0.6s ease-out forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+.page-header h2 {
+font-size: 2rem;
+}
+
+.card-body {
+padding: 20px;
+}
+
+.btn {
+padding: 12px 20px;
+font-size: 0.9rem;
+}
+}
+
+.swal2-popup {
+background-color: var(--card-bg) !important;
+border: 1px solid var(--border-color) !important;
+color: var(--text-color) !important;
+}
+
+.swal2-title {
+color: var(--text-color) !important;
+}
+
+.swal2-content {
+color: var(--text-muted) !important;
+}
+
+.swal2-confirm {
+background-color: var(--primary-color) !important;
+transition: var(--transition) !important;
+}
+
+.swal2-confirm:hover {
+background-color: var(--secondary-color) !important;
+}
+</style>
+</head>
+<body>
+<!-- ======== main-wrapper start =========== -->
+<main class="main-wrapper">
+<!-- ========== section start ========== -->
+<section class="py-5">
+<div class="container">
+<div class="page-header">
+<h2>Painel Administrativo</h2>
+<p>Gerencie as API Keys do sistema Dark Stars</p>
+</div>
+
+<!-- Adicionar API Key -->
+<div class="card mb-4">
+<div class="card-header">
+<i class="fas fa-key"></i> Adicionar API Key
+</div>
+<div class="card-body">
+<div class="form-group">
+<label>Senha do Administrador</label>
+<input type="password" class="form-control" id="senhaAdd" placeholder="Digite sua senha">
+</div>
+<div class="form-group">
+<label>Nova API Key</label>
+<input type="text" class="form-control" id="newKey" placeholder="Ex: darkstars2025">
+</div>
+<div class="form-group">
+<label>Requests Permitidos</label>
+<input type="number" class="form-control" id="newRequest" placeholder="Ex: 100">
+</div>
+<button onclick="adicionarKey()" class="btn btn-primary">
+<i class="fas fa-plus-circle"></i> Adicionar Key
+</button>
+</div>
+</div>
+
+<!-- Remover API Key -->
+<div class="card mb-4">
+<div class="card-header">
+<i class="fas fa-trash-alt"></i> Remover API Key
+</div>
+<div class="card-body">
+<div class="form-group">
+<label>Senha do Administrador</label>
+<input type="password" class="form-control" id="senhaDel" placeholder="Digite sua senha">
+</div>
+<div class="form-group">
+<label>API Key para remover</label>
+<input type="text" class="form-control" id="delKey" placeholder="Ex: darkstars2025">
+</div>
+<button onclick="removerKey()" class="btn btn-danger">
+<i class="fas fa-trash"></i> Remover Key
+</button>
+</div>
+</div>
+
+<!-- Atualizar Request -->
+<div class="card">
+<div class="card-header">
+<i class="fas fa-sync-alt"></i> Atualizar Limite de Requisições
+</div>
+<div class="card-body">
+<div class="form-group">
+<label>Senha do Administrador</label>
+<input type="password" class="form-control" id="senhaRequest" placeholder="Digite sua senha">
+</div>
+<div class="form-group">
+<label>API Key</label>
+<input type="text" class="form-control" id="reqKey" placeholder="Ex: darkstars2025">
+</div>
+<div class="form-group">
+<label>Novo Limite</label>
+<input type="number" class="form-control" id="reqNew" placeholder="Ex: 5000">
+</div>
+<button onclick="atualizarRequest()" class="btn btn-dark">
+<i class="fas fa-redo"></i> Atualizar Request
+</button>
+</div>
+</div>
+</div>
 </section>
-      <!-- ========== section end ========== -->
+<!-- ========== section end ========== -->
 
-      <!-- ========== footer start =========== -->
-     <footer class="footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6 order-last order-md-first">
-              <div class="copyright text-center text-md-start">
-                <p class="text-sm">
-                 Base feita por
-                  <a href="https://www.youtube.com/@Pedrozz_Mods" rel="nofollow" target="_blank">
-                    Pedrozz Mods
-                  </a>
-                </p>
-              </div>
-            </div>
-            <!-- end col-->
-            <div class="col-md-6">
-              <div class="terms d-flex justify-content-center justify-content-md-end">
-                <a href="#0" class="text-sm ml-15">Dark Stars Api Todos os direitos reservados</a>
-              </div>
-            </div>
-          </div>
-          <!-- end row -->
-        </div>
-        <!-- end container -->
-      </footer>
-      <!-- ========== footer end =========== -->
-    </main>
-    <!-- ======== main-wrapper end =========== -->
+<!-- ========== footer start =========== -->
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<p>Base desenvolvida por <a href="https://www.youtube.com/@Pedrozz_Mods" target="_blank">Pedrozz Mods</a></p>
+<p>Dark Stars API - Todos os direitos reservados</p>
+</div>
+</div>
+</footer>
+<!-- ========== footer end =========== -->
+</main>
+<!-- ======== main-wrapper end =========== -->
 
-    <!-- ========= All Javascript files linkup ======== -->
 <script>
-  const apiBase = '/api/apikey';
+const apiBase = '/api/apikey';
 
-  async function adicionarKey() {
-    const senha = document.getElementById("senhaAdd").value;
-    const apikey = document.getElementById("newKey").value;
-    const request = parseInt(document.getElementById("newRequest").value);
+async function adicionarKey() {
+const senha = document.getElementById("senhaAdd").value;
+const apikey = document.getElementById("newKey").value;
+const request = parseInt(document.getElementById("newRequest").value);
 
-    const res = await fetch(`${apiBase}/add/apikey`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ senha, apikey, request })
-    });
+if (!senha || !apikey || !request) {
+Swal.fire('Atenção', 'Preencha todos os campos!', 'warning');
+return;
+}
 
-    const data = await res.json();
-    Swal.fire(data.success ? '✅ Sucesso' : '❌ Erro', data.message, data.success ? 'success' : 'error');
-  }
+try {
+const res = await fetch(`${apiBase}/add/apikey`, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ senha, apikey, request })
+});
 
-  async function removerKey() {
-    const senha = document.getElementById("senhaDel").value;
-    const apikey = document.getElementById("delKey").value;
+const data = await res.json();
 
-    const res = await fetch(`${apiBase}/del/apikey`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ senha, apikey })
-    });
+if (data.success) {
+document.getElementById("senhaAdd").value = '';
+document.getElementById("newKey").value = '';
+document.getElementById("newRequest").value = '';
+}
 
-    const data = await res.json();
-    Swal.fire(data.success ? '✅ Sucesso' : '❌ Erro', data.message, data.success ? 'success' : 'error');
-  }
+Swal.fire({
+title: data.success ? '✅ Sucesso' : '❌ Erro',
+text: data.message,
+icon: data.success ? 'success' : 'error',
+background: '#1a1a1a',
+color: '#edf2f4'
+});
+} catch (error) {
+Swal.fire('Erro', 'Ocorreu um erro ao processar sua solicitação', 'error');
+console.error('Error:', error);
+}
+}
 
-  async function atualizarRequest() {
-    const senha = document.getElementById("senhaRequest").value;
-    const apikey = document.getElementById("reqKey").value;
-    const request = parseInt(document.getElementById("reqNew").value);
+async function removerKey() {
+const senha = document.getElementById("senhaDel").value;
+const apikey = document.getElementById("delKey").value;
 
-    const res = await fetch(`${apiBase}/add/request`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ senha, apikey, request })
-    });
+if (!senha || !apikey) {
+Swal.fire('Atenção', 'Preencha todos os campos!', 'warning');
+return;
+}
 
-    const data = await res.json();
-    Swal.fire(data.success ? '✅ Sucesso' : '❌ Erro', data.message, data.success ? 'success' : 'error');
-  }
+try {
+const res = await fetch(`${apiBase}/del/apikey`, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ senha, apikey })
+});
+
+const data = await res.json();
+
+if (data.success) {
+document.getElementById("senhaDel").value = '';
+document.getElementById("delKey").value = '';
+}
+
+Swal.fire({
+title: data.success ? '✅ Sucesso' : '❌ Erro',
+text: data.message,
+icon: data.success ? 'success' : 'error',
+background: '#1a1a1a',
+color: '#edf2f4'
+});
+} catch (error) {
+Swal.fire('Erro', 'Ocorreu um erro ao processar sua solicitação', 'error');
+console.error('Error:', error);
+}
+}
+
+async function atualizarRequest() {
+const senha = document.getElementById("senhaRequest").value;
+const apikey = document.getElementById("reqKey").value;
+const request = parseInt(document.getElementById("reqNew").value);
+
+if (!senha || !apikey || !request) {
+Swal.fire('Atenção', 'Preencha todos os campos!', 'warning');
+return;
+}
+
+try {
+const res = await fetch(`${apiBase}/add/request`, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ senha, apikey, request })
+});
+
+const data = await res.json();
+
+if (data.success) {
+document.getElementById("senhaRequest").value = '';
+document.getElementById("reqKey").value = '';
+document.getElementById("reqNew").value = '';
+}
+
+Swal.fire({
+title: data.success ? '✅ Sucesso' : '❌ Erro',
+text: data.message,
+icon: data.success ? 'success' : 'error',
+background: '#1a1a1a',
+color: '#edf2f4'
+});
+} catch (error) {
+Swal.fire('Erro', 'Ocorreu um erro ao processar sua solicitação', 'error');
+console.error('Error:', error);
+}
+}
 </script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/Chart.min.js"></script>
-    <script src="assets/js/dynamic-pie-chart.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-    <script src="assets/js/fullcalendar.js"></script>
-    <script src="assets/js/jvectormap.min.js"></script>
-    <script src="assets/js/world-merc.js"></script>
-    <script src="assets/js/polyfill.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+</body>
 </html>

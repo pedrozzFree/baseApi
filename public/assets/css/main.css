@@ -5955,3 +5955,260 @@ h6,
     transform: rotate(360deg);
   }
 }
+
+/* ========== TEMA VERMELHO E PRETO COMPLETO ========== */
+.theme-red-black {
+  /* Cores principais */
+  --primary-color: #d32f2f;
+  --primary-dark: #9a0007;
+  --primary-light: #ff6659;
+  --background-dark: #121212;
+  --background-light: #1e1e1e;
+  --background-card: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: #333333;
+  --unread-badge: #d32f2f;
+}
+
+/* Estilos base */
+.theme-red-black body {
+  color: var(--text-primary);
+  background: var(--background-dark);
+  background-image: var(--bg-gradient);
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* Cabeçalho */
+.theme-red-black .header {
+  background: var(--background-light);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.theme-red-black .header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-color);
+}
+
+.theme-red-black .header .header-right button {
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Cards */
+.theme-red-black .card-style,
+.theme-red-black .card-style-1,
+.theme-red-black .card-style-2,
+.theme-red-black .card-style-3,
+.theme-red-black .card-style-4,
+.theme-red-black .card-style-5,
+.theme-red-black .card-style-6,
+.theme-red-black .icon-card {
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Títulos e textos */
+.theme-red-black h1,
+.theme-red-black h2,
+.theme-red-black h3,
+.theme-red-black h4,
+.theme-red-black h5,
+.theme-red-black h6,
+.theme-red-black .h1,
+.theme-red-black .h2,
+.theme-red-black .h3,
+.theme-red-black .h4,
+.theme-red-black .h5,
+.theme-red-black .h6 {
+  color: var(--text-primary);
+}
+
+.theme-red-black p {
+  color: var(--text-secondary);
+}
+
+/* Links */
+.theme-red-black a,
+.theme-red-black a:focus,
+.theme-red-black a:hover {
+  color: var(--text-primary);
+}
+
+.theme-red-black a:hover {
+  color: var(--primary-color);
+}
+
+/* Botões */
+.theme-red-black .main-btn {
+  transition: all 0.3s ease;
+}
+
+.theme-red-black .primary-btn {
+  background: var(--primary-color);
+  color: var(--text-primary);
+  border: 1px solid var(--primary-color);
+}
+
+.theme-red-black .primary-btn:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.theme-red-black .primary-btn-outline {
+  background: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.theme-red-black .primary-btn-outline:hover {
+  background: var(--primary-color);
+  color: var(--text-primary);
+}
+
+.theme-red-black .primary-btn-light {
+  background: rgba(211, 47, 47, 0.1);
+  color: var(--primary-color);
+}
+
+/* Sidebar */
+.theme-red-black .sidebar-nav-wrapper {
+  background: var(--background-light);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
+}
+
+.theme-red-black .sidebar-nav ul .nav-item a {
+  color: var(--text-secondary);
+}
+
+.theme-red-black .sidebar-nav ul .nav-item.active > a, 
+.theme-red-black .sidebar-nav ul .nav-item.active > a.collapsed, 
+.theme-red-black .sidebar-nav ul .nav-item:hover > a, 
+.theme-red-black .sidebar-nav ul .nav-item:hover > a.collapsed {
+  color: var(--text-primary);
+}
+
+.theme-red-black .sidebar-nav ul .nav-item.active > a .icon, 
+.theme-red-black .sidebar-nav ul .nav-item.active > a.collapsed .icon, 
+.theme-red-black .sidebar-nav ul .nav-item:hover > a .icon, 
+.theme-red-black .sidebar-nav ul .nav-item:hover > a.collapsed .icon {
+  color: var(--primary-color);
+}
+
+/* Formulários */
+.theme-red-black .input-style-1 input,
+.theme-red-black .input-style-1 textarea,
+.theme-red-black .input-style-2 input,
+.theme-red-black .input-style-2 textarea,
+.theme-red-black .input-style-3 input,
+.theme-red-black .input-style-3 textarea {
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.theme-red-black .input-style-1 input:focus,
+.theme-red-black .input-style-1 textarea:focus,
+.theme-red-black .input-style-2 input:focus,
+.theme-red-black .input-style-2 textarea:focus,
+.theme-red-black .input-style-3 input:focus,
+.theme-red-black .input-style-3 textarea:focus {
+  border-color: var(--primary-color);
+  background: var(--background-card);
+}
+
+.theme-red-black .select-style-1 .select-position select,
+.theme-red-black .select-style-2 .select-position select {
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Tabelas */
+.theme-red-black .table {
+  color: var(--text-primary);
+}
+
+.theme-red-black .table > :not(caption) > * > * {
+  border-bottom-color: var(--border-color);
+}
+
+.theme-red-black .table th h6 {
+  color: var(--text-primary);
+}
+
+.theme-red-black .table td p {
+  color: var(--text-secondary);
+}
+
+/* Checkboxes e radios */
+.theme-red-black .checkbox-style .form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.theme-red-black .radio-style .form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Status e badges */
+.theme-red-black .status-btn.primary-btn {
+  background: var(--primary-color);
+  color: var(--text-primary);
+}
+
+.theme-red-black .status-btn.active-btn {
+  color: var(--primary-color);
+  background: rgba(211, 47, 47, 0.1);
+}
+
+/* Scroll top */
+.theme-red-black .scroll-top {
+  background: var(--primary-color);
+}
+
+.theme-red-black .scroll-top:hover {
+  background: var(--primary-dark);
+}
+
+/* Alertas */
+.theme-red-black .danger-alert .left {
+  background: var(--primary-color);
+}
+
+.theme-red-black .danger-alert .alert {
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  background: rgba(211, 47, 47, 0.2);
+}
+
+/* Footer */
+.theme-red-black .footer {
+  background: var(--background-light);
+  border-top: 1px solid var(--border-color);
+}
+
+.theme-red-black .footer .copyright p {
+  color: var(--text-secondary);
+}
+
+/* Efeitos de hover */
+.theme-red-black .card-style-1:hover,
+.theme-red-black .card-style-2:hover,
+.theme-red-black .card-style-3:hover,
+.theme-red-black .card-style-4:hover,
+.theme-red-black .card-style-5:hover,
+.theme-red-black .card-style-6:hover {
+  box-shadow: 0 0 15px rgba(211, 47, 47, 0.3);
+  border-color: var(--primary-color);
+}
+
+/* Adicione mais estilos conforme necessário para outros componentes */

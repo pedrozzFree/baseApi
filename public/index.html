@@ -1,122 +1,717 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon" />
-    <title>Dark Stars Api - Base</title>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Stars API - Poder além das estrelas</title>
+<link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 
-    <!-- ========== All CSS files linkup ========= -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/lineicons.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
-    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  </head>
-  <body>
-    <!-- ======== Preloader =========== --->
-    <div id="preloader">
-      <div class="spinner"></div>
-    </div>
-     <!--- ======== Preloader =========== -->
+<!-- Fontes & Ícones -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- ======== main-wrapper start =========== -->
-    <main class="main-wrapper">
+<style>
+:root {
+ 
+--primary: #ff0033;
+--primary-dark: #cc0029;
+--secondary: #0a0a0a;
+--secondary-light: #1a1a1a;
+--accent: #ff3366;
+--text: #f0f0f0;
+--text-muted: #b0b0b0;
+--card-bg: #151515;
+--border: #333;
+--success: #00e676;
+--warning: #ff9100;
+--danger: #ff1744;
+--gradient: linear-gradient(135deg, var(--primary), var(--accent));
+}
 
-      <!-- ========== section start ========== -->
-    <!-- Hero Section -->
-<section class="py-5 text-center bg-light">
-  <div class="container">
-    <h1 class="display-4 fw-bold">Dark Stars API</h1>
-    <p class="lead mb-4 text-muted">Uma poderosa API para desenvolvedores modernos. Conecte, escale e transforme com eficiência.</p>
-    <a href="/dasboard" class="btn btn-primary btn-lg">Acessar Dashboard</a><br><br>
-    <a href="/planos" class="btn btn-primary btn-lg">Planos</a>
-  </div>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Roboto', sans-serif;
+background-color: var(--secondary);
+color: var(--text);
+line-height: 1.7;
+overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Orbitron', sans-serif;
+font-weight: 700;
+letter-spacing: 1px;
+}
+
+ 
+#preloader {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: var(--secondary);
+z-index: 9999;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.spinner {
+width: 80px;
+height: 80px;
+border: 8px solid rgba(255, 0, 51, 0.2);
+border-top-color: var(--primary);
+border-radius: 50%;
+animation: spin 1.5s linear infinite;
+margin-bottom: 20px;
+}
+
+.loading-text {
+font-family: 'Orbitron', sans-serif;
+color: var(--primary);
+font-size: 1.2rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+}
+
+@keyframes spin {
+to { transform: rotate(360deg); }
+}
+
+ 
+.main-wrapper {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+section {
+padding: 6rem 0;
+position: relative;
+}
+
+.container {
+width: 100%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+}
+
+ 
+.hero {
+background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80') no-repeat center center;
+background-size: cover;
+position: relative;
+overflow: hidden;
+text-align: center;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(10, 10, 10, 0.85);
+z-index: 1;
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+padding: 8rem 0;
+}
+
+.hero h1 {
+font-size: 4rem;
+margin-bottom: 1.5rem;
+background: var(--gradient);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+line-height: 1.2;
+animation: fadeInUp 1s ease;
+}
+
+.hero p {
+font-size: 1.5rem;
+max-width: 700px;
+margin: 0 auto 3rem;
+color: var(--text-muted);
+animation: fadeInUp 1s ease 0.3s forwards;
+opacity: 0;
+}
+
+ 
+.btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 1rem 2.5rem;
+border-radius: 50px;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 1px;
+font-size: 1rem;
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+position: relative;
+overflow: hidden;
+border: none;
+cursor: pointer;
+z-index: 1;
+}
+
+.btn-primary {
+background: var(--gradient);
+color: white;
+box-shadow: 0 10px 20px rgba(255, 0, 51, 0.3);
+}
+
+.btn-primary:hover {
+transform: translateY(-5px);
+box-shadow: 0 15px 30px rgba(255, 0, 51, 0.4);
+}
+
+.btn-primary::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+z-index: -1;
+transition: opacity 0.4s ease;
+opacity: 0;
+}
+
+.btn-primary:hover::before {
+opacity: 1;
+}
+
+.btn-outline {
+background: transparent;
+color: var(--text);
+border: 2px solid var(--primary);
+margin-left: 1rem;
+}
+
+.btn-outline:hover {
+background: var(--primary);
+color: white;
+transform: translateY(-5px);
+}
+
+.btn-group {
+display: flex;
+justify-content: center;
+gap: 1rem;
+flex-wrap: wrap;
+}
+
+ 
+.features {
+background-color: var(--secondary);
+}
+
+.section-title {
+text-align: center;
+margin-bottom: 5rem;
+position: relative;
+}
+
+.section-title h2 {
+font-size: 2.5rem;
+margin-bottom: 1rem;
+background: var(--gradient);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+
+.section-title p {
+color: var(--text-muted);
+max-width: 700px;
+margin: 0 auto;
+font-size: 1.2rem;
+}
+
+.features-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+}
+
+.feature-card {
+background-color: var(--card-bg);
+border-radius: 15px;
+padding: 2.5rem;
+transition: all 0.4s ease;
+position: relative;
+overflow: hidden;
+border: 1px solid var(--border);
+}
+
+.feature-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+border-color: var(--primary);
+}
+
+.feature-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 5px;
+background: var(--gradient);
+}
+
+.feature-icon {
+font-size: 3.5rem;
+margin-bottom: 1.5rem;
+background: var(--gradient);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+
+.feature-card h3 {
+font-size: 1.5rem;
+margin-bottom: 1rem;
+color: var(--text);
+}
+
+.feature-card p {
+color: var(--text-muted);
+}
+
+ 
+.about {
+background-color: var(--secondary-light);
+position: relative;
+overflow: hidden;
+}
+
+.about::before {
+content: '';
+position: absolute;
+top: -50px;
+left: -50px;
+width: 200px;
+height: 200px;
+background: radial-gradient(circle, rgba(255, 0, 51, 0.1) 0%, rgba(255, 0, 51, 0) 70%);
+z-index: 0;
+}
+
+.about::after {
+content: '';
+position: absolute;
+bottom: -50px;
+right: -50px;
+width: 200px;
+height: 200px;
+background: radial-gradient(circle, rgba(255, 0, 51, 0.1) 0%, rgba(255, 0, 51, 0) 70%);
+z-index: 0;
+}
+
+.about-content {
+position: relative;
+z-index: 1;
+text-align: center;
+max-width: 800px;
+margin: 0 auto;
+}
+
+.about h2 {
+font-size: 2.5rem;
+margin-bottom: 1.5rem;
+background: var(--gradient);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+
+.about p {
+font-size: 1.2rem;
+color: var(--text-muted);
+margin-bottom: 2rem;
+}
+
+.tech-badges {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 1rem;
+margin-top: 2rem;
+}
+
+.badge {
+padding: 0.5rem 1.2rem;
+border-radius: 50px;
+background: rgba(255, 255, 255, 0.1);
+color: var(--text);
+font-size: 0.9rem;
+font-weight: 500;
+border: 1px solid var(--border);
+transition: all 0.3s ease;
+}
+
+.badge:hover {
+background: var(--primary);
+color: white;
+transform: translateY(-3px);
+box-shadow: 0 5px 15px rgba(255, 0, 51, 0.3);
+border-color: var(--primary);
+}
+
+ 
+.cta {
+background: var(--gradient);
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+.cta::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: url('https://www.transparenttextures.com/patterns/dark-stripes.png');
+opacity: 0.1;
+z-index: 1;
+}
+
+.cta-content {
+position: relative;
+z-index: 2;
+}
+
+.cta h2 {
+font-size: 2.5rem;
+margin-bottom: 1.5rem;
+color: white;
+}
+
+.cta p {
+font-size: 1.2rem;
+color: rgba(255, 255, 255, 0.8);
+margin-bottom: 2rem;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.cta .btn {
+background: white;
+color: var(--primary);
+font-weight: 700;
+}
+
+.cta .btn:hover {
+background: var(--secondary);
+color: white;
+transform: translateY(-5px);
+}
+
+ 
+.footer {
+background-color: var(--secondary-light);
+padding: 3rem 0;
+border-top: 1px solid var(--border);
+}
+
+.footer-content {
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+
+.footer-logo {
+font-size: 2rem;
+font-weight: 700;
+margin-bottom: 1.5rem;
+background: var(--gradient);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+
+.footer-links {
+display: flex;
+gap: 2rem;
+margin-bottom: 1.5rem;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.footer-link {
+color: var(--text-muted);
+text-decoration: none;
+transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+color: var(--primary);
+}
+
+.footer-social {
+display: flex;
+gap: 1.5rem;
+margin-bottom: 2rem;
+}
+
+.social-icon {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background-color: var(--card-bg);
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--text);
+transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+background: var(--gradient);
+color: white;
+transform: translateY(-3px);
+}
+
+.footer-copyright {
+color: var(--text-muted);
+font-size: 0.9rem;
+}
+
+.footer-copyright a {
+color: var(--primary);
+text-decoration: none;
+}
+
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes pulse {
+0% {
+transform: scale(1);
+}
+50% {
+transform: scale(1.05);
+}
+100% {
+transform: scale(1);
+}
+}
+
+
+@media (max-width: 992px) {
+.hero h1 {
+font-size: 3rem;
+}
+
+.hero p {
+font-size: 1.2rem;
+}
+
+.section-title h2 {
+font-size: 2rem;
+}
+}
+
+@media (max-width: 768px) {
+section {
+padding: 4rem 0;
+}
+
+.hero-content {
+padding: 6rem 0;
+}
+
+.hero h1 {
+font-size: 2.5rem;
+}
+
+.btn-group {
+flex-direction: column;
+align-items: center;
+}
+
+.btn-outline {
+margin-left: 0;
+margin-top: 1rem;
+}
+
+.features-grid {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 576px) {
+.hero h1 {
+font-size: 2rem;
+}
+
+.hero p {
+font-size: 1rem;
+}
+
+.section-title h2 {
+font-size: 1.8rem;
+}
+
+.feature-card {
+padding: 2rem;
+}
+}
+</style>
+</head>
+<body>
+<!-- Preloader -->
+<div id="preloader">
+<div class="spinner"></div>
+<div class="loading-text">CARREGANDO DARK STARS</div>
+</div>
+
+<main class="main-wrapper">
+<!-- Hero Section -->
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+<h1>DARK STARS API</h1>
+<p>Uma poderosa API para desenvolvedores modernos. Conecte, escale e transforme com eficiência.</p>
+<div class="btn-group">
+<a href="/dasboard" class="btn btn-primary">
+<i class="fas fa-rocket"></i> Acessar Dashboard
+</a>
+<a href="/planos" class="btn btn-outline">
+<i class="fas fa-crown"></i> Ver Planos
+</a>
+</div>
+</div>
+</div>
 </section>
 
 <!-- Features Section -->
-<section class="py-5 bg-white">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-4 mb-4">
-        <span class="material-icons text-primary mb-2" style="font-size:48px;">bolt</span>
-        <h5>Alta Performance</h5>
-        <p class="text-muted">Respostas rápidas, baixo tempo de latência e grande escalabilidade.</p>
-      </div>
-      <div class="col-md-4 mb-4">
-        <span class="material-icons text-success mb-2" style="font-size:48px;">lock</span>
-        <h5>Segurança</h5>
-        <p class="text-muted">Autenticação por key e proteção contra abusos.</p>
-      </div>
-      <div class="col-md-4 mb-4">
-        <span class="material-icons text-warning mb-2" style="font-size:48px;">build</span>
-        <h5>Fácil Integração</h5>
-        <p class="text-muted">Documentação clara e endpoints simples de usar.</p>
-      </div>
-    </div>
-  </div>
+<section class="features">
+<div class="container">
+<div class="section-title">
+<h2>Recursos Poderosos</h2>
+<p>Tudo que você precisa para construir aplicações incríveis</p>
+</div>
+
+<div class="features-grid">
+<div class="feature-card">
+<div class="feature-icon">
+<i class="fas fa-bolt"></i>
+</div>
+<h3>Alta Performance</h3>
+<p>Respostas em milissegundos com nossa infraestrutura otimizada e distribuída globalmente.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">
+<i class="fas fa-lock"></i>
+</div>
+<h3>Segurança Avançada</h3>
+<p>Proteção contra DDoS, autenticação por API Key e criptografia de ponta a ponta.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">
+<i class="fas fa-plug"></i>
+</div>
+<h3>Fácil Integração</h3>
+<p>Documentação completa com exemplos em múltiplas linguagens e suporte dedicado.</p>
+</div>
+</div>
+</div>
 </section>
 
-<!-- About Section -->
-<section class="py-5 bg-light">
-  <div class="container text-center">
-    <h2>O que é a Dark Stars API?</h2>
-    <p class="lead text-muted mt-3">Uma plataforma de APIs desenvolvida por <strong>Pedrozz Mods</strong> para facilitar a criação de bots, apps e sistemas integrados com dados rápidos, seguros e confiáveis.</p>
-  </div>
-</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-copyright">
+© 2023 Dark Stars API. Desenvolvido por <a href="#">Pedrozz Mods</a>. Todos os direitos reservados.
+</div>
+</div>
+</div>
+</footer>
+</main>
 
-<!-- Call to Action -->
-<section class="py-5 bg-primary text-white text-center">
-  <div class="container">
-    <h2 class="mb-3">Comece agora</h2>
-    <p class="mb-4">Cadastre-se e acesse seu painel para começar a usar nossa API.</p>
-    <a href="/dasboard" class="btn btn-outline-light btn-lg">Ir para o Dashboard</a>
-  </div>
-</section>
-      <!-- ========== section end ========== -->
+<script>
 
-      <!-- ========== footer start =========== -->
-     <footer class="footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6 order-last order-md-first">
-              <div class="copyright text-center text-md-start">
-                <p class="text-sm">
-                 Base feita por
-                  <a href="https://plainadmin.com" rel="nofollow" target="_blank">
-                    Pedrozz Mods
-                  </a>
-                </p>
-              </div>
-            </div>
-            <!-- end col-->
-            <div class="col-md-6">
-              <div class="terms d-flex justify-content-center justify-content-md-end">
-                <a href="#0" class="text-sm ml-15">Dark Stars Api Todos os direitos reservados</a>
-              </div>
-            </div>
-          </div>
-          <!-- end row -->
-        </div>
-        <!-- end container -->
-      </footer>
-      <!-- ========== footer end =========== -->
-    </main>
-    <!-- ======== main-wrapper end =========== -->
+window.addEventListener('load', function() {
+const preloader = document.getElementById('preloader');
+setTimeout(function() {
+preloader.style.opacity = '0';
+setTimeout(function() {
+preloader.style.display = 'none';
+}, 500);
+}, 1500);
+});
 
-    <!-- ========= All Javascript files linkup ======== -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/Chart.min.js"></script>
-    <script src="assets/js/dynamic-pie-chart.js"></script>
-    <script src="assets/js/moment.min.js"></script>
-    <script src="assets/js/fullcalendar.js"></script>
-    <script src="assets/js/jvectormap.min.js"></script>
-    <script src="assets/js/world-merc.js"></script>
-    <script src="assets/js/polyfill.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+
+document.addEventListener('DOMContentLoaded', function() {
+const title = document.querySelector('.hero h1');
+if (title) {
+const text = "DARK STARS API";
+title.textContent = '';
+
+let i = 0;
+const typingEffect = setInterval(function() {
+if (i < text.length) {
+title.textContent += text.charAt(i);
+i++;
+} else {
+clearInterval(typingEffect);
+}
+}, 100);
+}
+});
+
+ 
+const animateOnScroll = () => {
+const cards = document.querySelectorAll('.feature-card');
+cards.forEach((card, index) => {
+const cardPosition = card.getBoundingClientRect().top;
+const screenPosition = window.innerHeight / 1.2;
+
+if (cardPosition < screenPosition) {
+card.style.animation = `fadeInUp 0.5s ease-out forwards ${index * 0.1}s`;
+card.style.opacity = '0';
+}
+});
+};
+
+ 
+window.addEventListener('load', animateOnScroll);
+window.addEventListener('scroll', animateOnScroll);
+</script>
+</body>
 </html>

@@ -389,8 +389,9 @@ if (infoErro) return res.json(infoErro);
 if (!nome) return res.json({status: false, criador, error: "Falta o parâmetro nome na query"})
 try {
 const ScraperData = await Pinterest(nome);
-res.send(ScraperData)
-
+const response = await axios.get(ScraperData, { responseType: "arraybuffer" });
+res.setHeader("Content-Type", response.headers["content-type"]);
+res.send(response.data);
 } catch (e) {
 console.log(e)
 res.json({status: false, criador, error: "Deu erro na sua solicitação, fale com o criador para suporte"})

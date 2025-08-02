@@ -15,29 +15,29 @@ const fs = require('fs');
 const axios = require('axios');
 const fetch = require("node-fetch");
 //CONSTS
-const BaseApi = "http://speedhosting.cloud:5000";
-const BaseApiDark = "http://speedhosting.cloud:2025";
+const BaseApi = "http://api.speedhosting.cloud";
+const BaseApiDark = "https://dksapis.online";
 const DARK_APIKEY = "SUAKEY"; //PEGA FAZENDO LOGIN NO LINK ACIMA DESSA CONST
 const ApiKey = "SUA KEY SPEED";
-const criador = "Pedrozz Mods 🦉";
+const criador = "Pedrozz Mods";
 
 //========[ DOWNLOAD ]========//
 async function ytMp3(url) {
 try {
-api = `${BaseApi}/api/download/playv3?url=${url}&apikey=${ApiKey}`
+api = `${BaseApiDark}/api/download/youtube-audio?url=${url}&apikey=${DARK_APIKEY}`
 return api;
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
 
 async function ytMp4(url) {
 try {
-api = `${BaseApi}/api/download/playvdv4?url=${url}&apikey=${ApiKey}`
+api = `${BaseApiDark}/api/download/youtube-video?url=${url}&apikey=${DARK_APIKEY}`
 return api;
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -54,7 +54,7 @@ type: 'audio/mpeg',
 resultado: data.Resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -71,7 +71,7 @@ type: 'video/mp4',
 resultado: data.Resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -86,7 +86,7 @@ criador,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -102,14 +102,14 @@ total: data.resultado.length,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
 
 async function audiomeme(query) {
 try {
-api = await fetch(`${BaseApi}/api/download/audiomeme?nome=${encodeURIComponent(query)}&apikey=${ApiKey}`)
+api = await fetch(`${BaseApiDark}/api/download/myinstants?query=${encodeURIComponent(query)}&apikey=${DARK_APIKEY}`)
 data = await api.json()
 return {
 status: "online",
@@ -117,7 +117,7 @@ criador,
 result: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -132,7 +132,7 @@ criador,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -147,7 +147,7 @@ criador,
 resultado: data.data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -162,7 +162,7 @@ criador,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -177,7 +177,7 @@ criador,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -214,7 +214,7 @@ criador,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -230,7 +230,7 @@ total: data.resultado.length,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -245,7 +245,7 @@ criador,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -260,22 +260,16 @@ criador,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
 
 async function Pinterest(query) {
 try {
-api = await fetch(`${BaseApi}/api/pesquisa/pinterest?query=${encodeURIComponent(query)}&apikey=${ApiKey}`)
-data = await api.json()
-return {
-status: "online",
-criador,
-resultado: data.resultado
-};
+return `${BaseApiDark}/api/pesquisa/pinterest?text=${encodeURIComponent(query)}&apikey=${DARK_APIKEY}`;
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -290,7 +284,7 @@ criador,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -305,7 +299,7 @@ criador,
 resultado: data.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -321,7 +315,7 @@ pesquisa: query,
 resultado: data.resultado.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -332,7 +326,7 @@ try {
 api = `${BaseApiDark}/api/canva/bem-vindo2?titulo=${encodeURIComponent(nome)}&avatar=${avatar}&fundo=${fundo}&nome=${encodeURIComponent(titulo)}&desc=${encodeURIComponent(desc)}&apikey=${DARK_APIKEY}`
 return api;
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -342,7 +336,7 @@ try {
 api = `${BaseApiDark}/api/canvas/levelup?foto=${avatar}&fundo=${fundo}&nome=${encodeURIComponent(nome)}&lvb=${encodeURIComponent(level1)}&lva=${encodeURIComponent(level2)}&apikey=${DARK_APIKEY}`
 return api;
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -352,7 +346,7 @@ try {
 api = `${BaseApiDark}/api/canvas/musicard/v2?thumbnail=${avatar}&music_name=${encodeURIComponent(name)}&artist_name=${encodeURIComponent(time)}&time_end=${encodeURIComponent(artistName)}&apikey=${DARK_APIKEY}`
 return api;
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -362,7 +356,7 @@ try {
 api = `${BaseApiDark}/api/canvas/musicard/v3?thumbnail=${avatar}&music_name=${encodeURIComponent(name)}&artist_name=${encodeURIComponent(artistName)}&apikey=${DARK_APIKEY}`
 return api;
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -372,7 +366,7 @@ try {
 api = `${BaseApiDark}/api/canvas/${nome}?link=${url}&apikey=${DARK_APIKEY}`
 return api;
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -389,7 +383,7 @@ type: nomeHentai,
 imagemUrl: api3.message
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -406,7 +400,7 @@ type: nomeHentai,
 imagemUrl: api3.url
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -422,7 +416,7 @@ criador,
 imagemUrl: api
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -436,14 +430,14 @@ criador,
 imagemUrl: api
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
 
 async function metadinha() {
 try {
-api2 = await fetch(`${BaseApi}/api/imagem/metadinha?apikey=${ApiKey}`)
+api2 = await fetch(`${BaseApiDark}/api/metadinha?apikey=${DARK_APIKEY}`)
 api = await api2.json()
 return {
 status: "online",
@@ -453,7 +447,7 @@ masculina: api.masculina,
 feminina: api.feminina
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -470,7 +464,7 @@ masculina: api.macho,
 feminina: api.fema
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -494,7 +488,7 @@ api = `https://junimk.sirv.com/Api/fe4b9803e07ab839efd4ef500b9456b9.jpg?text.0.t
 return api;
 }
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -519,7 +513,7 @@ criador,
 resposta: api.resposta
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -552,7 +546,7 @@ resposta: api.resultado
 };
 }
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 }
@@ -590,7 +584,7 @@ criador,
 resposta: api.resultado
 };
 } catch (e) {
-console.log("Deu erro na solicitação, modulo: Scraper.js")
+console.log("Deu erro no puxa da informação da api Original")
 console.log(e)
 }
 
